@@ -2,42 +2,53 @@
 
 import random
 
-shuffled_list = []
-unshuffled_list = []
+def give10(deck):
+	unshuffled_list = []
 
-print '\n' + 'Time to play Dominion' + '\n' + '\n' + 'Which expansion would you like to use?' + '\n' + "	Dominion" + '\n' + "	Intrigue" + '\n' + "	Seaside" + '\n'
+	i = 10
 
-while True:
-	deck = raw_input()
+	if deck == "dominion":
+		unshuffled_list = (['Cellar', 'Chapel', 'Moat', 'Chancellor', 'Village', 'Woodcutter', 'Workshop', 'Bureaucrat', 'Feast', 'Gardens', 'Militia', 'Moneylender', 'Remodel', 'Smithy', 'Spy', 'Thief', 'Throne Room', 'Council Room', 'Festival', 'Laboratory', 'Library', 'Market', 'Mine', 'Witch', 'Adventurer'])
 
-	if deck == 'Dominion':
-		break
+	elif deck == "intrigue":
+		unshuffled_list = (['Courtyard','Pawn','Secret', 'Chamber','Great Hall','Masquerade','Shanty Town','Steward','Swindler','Wishing Well','Baron','Bridge','Conspirator','Coppersmith','Ironworks','Mining Village','Scout','Duke','Minion','Saboteur','Torturer','Trading Post','Tribute','Upgrade','Harem','Nobles'])
 
-	elif deck == 'Intrigue':
-		break
+		#elif deck == "seaside":
+	else: # hopefully 'seaside', also default
+		unshuffled_list = (['Embargo','Haven','Lighthouse','Native Village','Pearl Diver','Ambassador','Fishing Village','Lookout','Smugglers','Warehouse','Caravan','Cutpurse','Island','Navigator','Pirate Ship','Salvager','Sea Hag','Treasure Map','Bazaar','Explorer','Ghost Ship','Merchant Ship','Outpost','Tactician','Treasury','Wharf'])
 
-	elif deck == 'Seaside':
-		break
 
-	else:
-		print "Try that again." + '\n'
+	shuffled_list = []
+	while i > 0:
+		r = random.randint(0, len(unshuffled_list)-1)
+		shuffled_list.append(unshuffled_list[r])
+		del unshuffled_list[r]
+		i -= 1
+		shuffled_list.sort()
 
-if deck == "Dominion":
-	unshuffled_list = (['Cellar', 'Chapel', 'Moat', 'Chancellor', 'Village', 'Woodcutter', 'Workshop', 'Bureaucrat', 'Feast', 'Gardens', 'Militia', 'Moneylender', 'Remodel', 'Smithy', 'Spy', 'Thief', 'Throne Room', 'Council Room', 'Festival', 'Laboratory', 'Library', 'Market', 'Mine', 'Witch', 'Adventurer'])
+	return shuffled_list
 
-elif deck == "Intrigue":
-	unshuffled_list = (['Courtyard','Pawn','Secret', 'Chamber','Great Hall','Masquerade','Shanty Town','Steward','Swindler','Wishing Well','Baron','Bridge','Conspirator','Coppersmith','Ironworks','Mining Village','Scout','Duke','Minion','Saboteur','Torturer','Trading Post','Tribute','Upgrade','Harem','Nobles'])
+if __name__ == "__main__":
 
-elif deck == "Seaside":
-	unshuffled_list = (['Embargo','Haven','Lighthouse','Native Village','Pearl Diver','Ambassador','Fishing Village','Lookout','Smugglers','Warehouse','Caravan','Cutpurse','Island','Navigator','Pirate Ship','Salvager','Sea Hag','Treasure Map','Bazaar','Explorer','Ghost Ship','Merchant Ship','Outpost','Tactician','Treasury','Wharf'])
+	print '\n' + 'Time to play Dominion' + '\n' + '\n' + 'Which expansion would you like to use?' + '\n' + "	Dominion" + '\n' + "	Intrigue" + '\n' + "	Seaside" + '\n'
 
-int = 10
+	while True:
+		deck = raw_input()
+		deck = deck.lower()
 
-while int > 0:
-	r = random.randint(0, len(unshuffled_list)-1)
-	shuffled_list.append(unshuffled_list[r])
-	del unshuffled_list[r]
-	int -= 1
-	shuffled_list.sort()
+		if deck == 'dominion':
+			break
 
-print shuffled_list
+		elif deck == 'intrigue':
+			break
+
+		elif deck == 'seaside':
+			break
+
+		else:
+			print "Try that again." + '\n'
+
+
+
+
+	print give10(deck)
